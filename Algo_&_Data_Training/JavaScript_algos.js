@@ -140,7 +140,7 @@ class SSL{
         this.length = 0;
     }
 
-    reverse(val){
+    reverse(){
         var node = this.head;
         this.head = this.tail;
         this.tail = node;
@@ -187,3 +187,58 @@ list.push(4)
 
 list.reverse()
 list.print()
+
+// 8/11/2020
+
+// Singly Linked List () Day 2 )
+
+// Add a child pointer to nodes
+// Save first node to connect variable
+// point the head to next list head
+// point the tail of the next list to the head of the prev list
+
+class Node{
+    constructor(val){
+        this.val = val;
+        this.next = null;
+        this.child = null;
+    }
+}
+
+class SSL{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    flatten(){
+
+    }
+
+    push(val){
+        var newnode = new Node(val)
+        if (!this.head){
+            this.head = newnode;
+            this.tail = this.head;
+        } else {
+            this.tail.next = newnode;
+            this.tail = newnode;
+        }
+        this.length ++
+        return this
+    }
+
+    print(){
+        var arr = [];
+        var current = this.head;
+        while(current){
+            arr.push(current.val)
+            current = current.next;
+        }
+        console.log(arr);
+    }
+}
+
+child1 = Node(12)
+child1.c
