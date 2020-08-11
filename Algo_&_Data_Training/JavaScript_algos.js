@@ -94,3 +94,96 @@ function removeDuplicates(arr) {
     return newarr;
 }
 console.log(removeDuplicates([1, 2, 2, 3, 3, 4, 5, 6, 6, 6, 6, 6, 7]))
+
+// Return the sum of all the values in an arr
+
+function sumOfAllValues(ar){
+    
+    if ( i == 0){
+        return ar[0]
+    } else {
+        ar[i] + sumOfAllValues(ar)
+    }
+}
+
+console.log(sumOfAllValues([10,2]))
+
+// 8/10/2020
+
+// Singly Linked List
+
+// Swap the head and tail
+// Create a variable called next
+// Create a variable called prev
+// Create a variable called node and initialize it to the head property
+// Loop through he list
+// Set next to be the next property on whatever node is
+// Set the next property on the node to be whatever prev is
+// Set prev to be the value of the node variable
+// Set the node variable to be the walue of the next variable
+
+// NODE:
+// piece of data - val
+// reference to next node - next
+
+class Node{
+    constructor(val){
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class SSL{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    reverse(val){
+        var node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        var next;
+        var prev = null;
+        for(var i = 0; i < this.length; i++){
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
+    }
+
+    push(val){
+        var newnode = new Node(val)
+        if (!this.head){
+            this.head = newnode;
+            this.tail = this.head;
+        } else {
+            this.tail.next = newnode;
+            this.tail = newnode;
+        }
+        this.length ++
+        return this
+    }
+
+    print(){
+        var arr = [];
+        var current = this.head
+        while(current){
+            arr.push(current.val)
+            current = current.next
+        }
+        console.log(arr);
+    }
+}
+
+var list = new SSL()
+list.push(0)
+list.push(2)
+list.push(3)
+list.push(4)
+
+list.reverse()
+list.print()
