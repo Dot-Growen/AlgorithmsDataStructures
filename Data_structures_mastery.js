@@ -1,24 +1,24 @@
 // Singly Linked Listed
 // Linked List: A data structure consisting of a group of nodes which together represent a sequence. Under the simplest form, each nodes is composed of a data and a reference (link) to the next nodes in the sequence.
 
-class Node{
-    constructor(val){
+class Node {
+    constructor(val) {
         this.val = val;
         this.next = null;
     }
 }
 
-class SLL{
+class SLL {
 
-    constructor(){
+    constructor() {
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
 
-    push(val){
+    push(val) {
         var newNode = new Node(val);
-        if(!this.head){
+        if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
         } else {
@@ -30,20 +30,20 @@ class SLL{
         return this;
     }
 
-    pop(){
-        if(!this.head){
+    pop() {
+        if (!this.head) {
             return undefined;
         }
         var oldtail = this.head;
         var newtail = oldtail;
-        while(oldtail.next){
+        while (oldtail.next) {
             newtail = oldtail;
             oldtail = oldtail.next
         }
         newtail.next = null;
         this.tail = newtail;
         this.length--
-        if(this.length === 0){
+        if (this.length === 0) {
             this.head = null;
             this.tail = null;
         }
@@ -51,25 +51,53 @@ class SLL{
 
     }
 
-    print(){
+    makeLoop(num) {
+        var runner = this.head;
+        var tail = this.tail;
+        var temp;
+        while (runner.next) {
+            if (runner.val === num) {
+                temp = runner;
+            }
+            runner = runner.next
+        }
+        if (temp === null) {
+            console.log("Node body here.");
+            return this;
+        }
+        tail.next = temp;
+        console.log("LOOP CREATED! " + "Tail Now Pointing at ==> " + temp.val);
+        return this
+    }
+
+    breakLoop() {
+        var tail = this.tail;
+        if (tail.next) {
+            tail.next = null
+            console.log("LOOP BROKEN")
+        } else {
+            console.log("No Need to Break")
+        }
+    }
+
+
+    print() {
         var arr = [];
         var runner = this.head;
-        while(runner){
+        while (runner) {
             arr.push(runner.val);
             runner = runner.next
         }
         console.log(arr)
     }
 
-    transverse(){
+    transverse() {
         var runner = this.head;
-        while(runner){
+        while (runner) {
             console.log(runner.val);
             runner = runner.next;
         }
-
     }
-
 }
 
 var list = new SLL()
@@ -99,3 +127,73 @@ list.print();
 // 5. Decrement the length of the list by 1
 // 6. return the value of the node removed
 // 7. Set a condition for when the list is empty the head and tail becomes null.
+
+
+// Doubly Linked Listed
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class DLL {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    push(val) {
+        var newNode = new Node(val);
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            newNode.prev = this.tail;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+    }
+
+    pop() {
+        if (this.head == null) {
+            return undefined;
+        }
+        var currentTail = this.tail;
+        if (this.length == 1) {
+            this.head = null;
+            this.tail = null;
+        }
+        var newTail = this.tail.prev;
+        newTail = this.tail;
+        newTail.next = null;
+        this.length--
+        return currentTail;
+    }
+
+    print() {
+        var arr = [];
+        var runner = this.head;
+        while (runner) {
+            arr.push(runner.val)
+            runner = runner.next;
+        }
+        console.log(arr)
+    }
+
+}
+
+var list = new DLL()
+list.push(4)
+list.push(5)
+list.push(6)
+list.push(8)
+list.push(23)
+console.log(list)
+
+
