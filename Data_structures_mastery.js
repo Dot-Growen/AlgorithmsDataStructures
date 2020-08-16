@@ -160,20 +160,78 @@ class DLL {
         return this;
     }
 
+    // return undefine if there is no head
+    // save value of the current tail
+    // if list length is 1 then set head and tail to null
+    // otherwise set the tail to the node before it
+    // set the next property of the tail to null
+    // decrement the length
+    // return the removed tail
+
     pop() {
-        if (this.head == null) {
-            return undefined;
-        }
+        if (!this.head) return undefined;
         var currentTail = this.tail;
         if (this.length == 1) {
             this.head = null;
             this.tail = null;
+        } else {
+            this.tail = currentTail.prev;
+            this.tail.next = null;
         }
-        var newTail = this.tail.prev;
-        newTail = this.tail;
-        newTail.next = null;
         this.length--
         return currentTail;
+    }
+
+    // return undefine if there is no head
+    // return the value of the head
+
+    front() {
+        if (!this.head) {
+            return undefined;
+        } else {
+            console.log("STARTING VALUE => " + this.head.val);
+            return this.head.val;
+        }
+    }
+
+    // return undefine if there is no head
+    // return the value of the tail
+
+    back() {
+        if (!this.head) {
+            return undefined;
+        } else {
+            console.log("LAST VALUE => " + this.tail.val);
+            return this.tail.val;
+        }
+    }
+
+    // return undefine if there is no head
+    // set a runner variable equal to the head
+    // create a loop to traverse through the values
+    // if the runner's value is equal to the input value then return true
+    // set runner to next node
+    // after the loop end return false
+
+    contains(val) {
+        if (!this.head) return undefined;
+        var runner = this.head;
+        while (runner) {
+            if (runner.val == val) {
+                console.log(val + " Is in the list  ")
+                return true;
+            }
+            runner = runner.next;
+        }
+        console.log("List does not contain => " +val)
+        return false;
+    }
+
+    // return length
+
+    size() {
+        console.log("The list has " + this.length + " values")
+        return this.length;
     }
 
     print() {
@@ -185,7 +243,6 @@ class DLL {
         }
         console.log(arr)
     }
-
 }
 
 var list = new DLL()
@@ -195,5 +252,85 @@ list.push(6)
 list.push(8)
 list.push(23)
 console.log(list)
+
+
+// Stacks & Queues
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+class Stack {
+    constructor() {
+        this.first = null;
+        this.last = null;
+        this.length = 0;
+    }
+
+    push(val) {
+        var newNode = new Node(val);
+        if (!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            var first = this.first;
+            this.first = newNode;
+            this.first.next = first;
+        }
+        this.length++
+        return this;
+    }
+
+    // if no node in the stack return undefined ("NOthing to pop")
+    // if there's one node set the length to 0 and the first and last property to null
+    // otherwise Save the first val to a variable
+    // Set the first node's next property to be the first
+    // decrement the list by one
+
+    pop() {
+        if (!this.first) return null;
+        var first = this.first;
+        if (this.first === this.last) {
+            this.last = null;
+        }
+        this.first = this.first.next;
+        this.length--
+        return first.val;
+    }
+
+    print() {
+        var arr = []
+        var runner = this.first;
+        if (this.length > 1) {
+            while (runner) {
+                arr.push(runner.val);
+                runner = runner.next
+            }
+        } else {
+            console.log("Stack not big enough")
+        }
+
+        console.log(arr)
+    }
+
+}
+
+
+var stack = new Stack();
+
+stack.push("I")
+stack.push("am")
+stack.push("sad")
+stack.pop()
+stack.print()
+
+
+
+
+
+
 
 
