@@ -354,7 +354,6 @@ class Queue {
             this.last = newNode
         }
         return ++this.length
-
     }
 
     dequeue(){
@@ -410,6 +409,19 @@ class BinarySearchTree {
         this.root = null;
         this.count = 0;
     }
+
+
+    // Create a new node
+    // Check if there's a root if not set the root to the new node and return this
+    // Check if the val has already been adding if so return undefined
+    // Create a loop that going until false
+    // Create a variable runner to iterate through the tree
+    // Check if the val is greater or less then the current node the runner is on
+    // if greater 
+    // Then check is the right property is null
+    // if so make the right property the new node
+    // if not repeat the sequence.
+    // if less: do the same as for the right
 
     insert(val) {
         var newNode = new Node(val);
@@ -499,6 +511,10 @@ class BinarySearchTree {
         }
     }
 
+    // Check for root or if there is just one value. return undefine if there is none
+    // set input so that runner = this.root
+    // create a base case; if left property is null return the runner.val
+    // otherwaise recursively set the runner to left property
 
     min_recurisve(runner = this.root) {
         if (!this.root || this.count == 1) {

@@ -176,3 +176,14 @@ def strblabla(str_input):
     return return_list
 
 print(strblabla('01???'))
+
+import math
+def reverseList(arr):
+    x = 1
+    for i in range(math.floor(len(arr)/2)):
+        temp = arr[i]
+        arr[i] = arr[len(arr)-x]
+        arr[len(arr)-x] = temp
+        x = x + 1
+    return arr
+print(reverseList([1,3,5,3,4,5]))

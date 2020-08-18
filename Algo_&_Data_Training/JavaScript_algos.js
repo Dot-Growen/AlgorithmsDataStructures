@@ -547,3 +547,80 @@ list.push(6)
 list.push(8)
 list.push(23)
 list.print()
+
+
+// 8/17/2020
+
+// Binary Search Trees (Day 1)
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.right = null;
+        this.left = null;
+    }
+}
+
+class BST {
+    constructor() {
+        this.root = null;
+        this.count = 0;
+    }
+
+    add(val) {
+        var newNode = new Node(val);
+        if (!this.root) {
+            this.root = newNode;
+            this.count++
+            return this;
+        } else {
+            var runner = this.root;
+            while (true) {
+                if (val === runner.val) return undefined;
+                if (val > runner.val) {
+                    if (!runner.right) {
+                        runner.right = newNode;
+                        this.count++
+                        return this;
+                    }
+                    runner = runner.right;
+                } else {
+                    if (!runner.left) {
+                        runner.left = newNode;
+                        this.count++
+                        return this;
+                    }
+                    runner = runner.left;
+                }
+            }
+        }
+    }
+
+    min(runner = this.root) {
+        if(!this.root || this.count === 1) return undefined;
+        if(!runner.left){
+            console.log(runner.val)
+            return runner.val
+        } else {
+            return this.min(runner = runner.left)
+        }
+    }
+
+    contains(val) {
+        if (!this.root) {
+            return false;
+        } else {
+            var runner = this.root;
+            while (runner) {
+                if (val > runner.val) {
+                    runner = runner.right;
+                } else if (val < runner.val) {
+                    runner = runner.left;
+                } else {
+                    return true;
+                }
+            }
+            return false
+        }
+    }
+}
