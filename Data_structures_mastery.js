@@ -528,6 +528,39 @@ class BinarySearchTree {
         }
     }
 
+    // Set a base case for if the Node at the root is null. if so return -1
+    // set a left and right variable the recurively checks for each node in the tree
+    // check for max between the left and the right then return the greater
+
+    height(node = this.root){
+        if(!node){
+            return 0;
+        }
+    
+        const left = this.height(node.left);
+        const right = this.height(node.right);
+        if(left > right) {
+            return left + 1
+        } else {
+            return right + 1
+        }
+        // return Math.max(left, right) + 1
+    }
+
+    // Set a base case if the "checker node" is null return 1
+    // Set recursive functions to check the left and right children
+    // if not null have the "checker node" move to the left in the recursive function
+    // when null return the sum of the left and right additions plus 1
+
+    size(node = this.root){
+        if(node === null){
+            return 0;
+        }
+        let left = this.size(node.left)
+        let right = this.size(node.right)
+        return (left + right) + 1
+    }
+
 }
 
 var tree = new BinarySearchTree()
