@@ -1,4 +1,4 @@
-// Singly Linked Listed
+//********** Singly Linked Listed **************//
 // Linked List: A data structure consisting of a group of nodes which together represent a sequence. Under the simplest form, each nodes is composed of a data and a reference (link) to the next nodes in the sequence.
 
 class Node {
@@ -70,6 +70,21 @@ class SLL {
         return this
     }
 
+    DetectLoop() {
+        if (!this.length) {
+            return undefined;
+        }
+        var tail = this.tail;
+        if (tail.next) {
+            console.log("LOOP DETECTED")
+            return true
+        } else {
+            console.log("NO LOOP HERE")
+            return false
+        }
+        // console.log(this.tail)
+    }
+
     breakLoop() {
         var tail = this.tail;
         if (tail.next) {
@@ -129,7 +144,7 @@ list.print();
 // 7. Set a condition for when the list is empty the head and tail becomes null.
 
 
-// Doubly Linked Listed
+//********** Doubly Linked Listed ************//
 
 class Node {
     constructor(val) {
@@ -254,7 +269,7 @@ list.push(23)
 console.log(list)
 
 
-// Stacks
+//********** Stacks ***********//
 
 class Node {
     constructor(val) {
@@ -328,7 +343,7 @@ stack.pop()
 stack.print()
 
 
-// Queues
+//********** Queues **********//
 
 class Node {
     constructor(val){
@@ -394,7 +409,7 @@ q.print()
 q.dequeue()
 q.print()
 
-// Binary Search Tree
+//********** Binary Search Tree ***********//
 
 class Node {
     constructor(val) {
@@ -571,5 +586,7 @@ tree.insert_recursive(6)
 tree.insert_recursive(4)
 tree.insert_recursive(2)
 console.log(tree.contains_recurise(2, runner = this.root))
+
+//******** Tree Traversal *********//
 
 

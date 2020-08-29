@@ -19,7 +19,7 @@ function compareByLen(str1, str2) {
 
 ["Steele", "Colt", "Data Structures", "Algorithms"].sort(compareByLen)
 
-// //*****  BubbleSort *****//
+//*****  BubbleSort *****//
 
 //Swaping ES5
 function swap1(arr, idx1, idx2) {
@@ -38,7 +38,7 @@ const swap2 = (arr, idx1, idx2) => {
 // start an inner loop with a variable call j from the beginning until i-1
 // if arr[j] is greater than arr[j+1], swap those two values!
 
-// Big O(n) 
+// Big O(n) => linear 
 // Add noSwaps for optimization 
 
 function bubbleSort(arr) {
@@ -60,5 +60,6 @@ function bubbleSort(arr) {
     return arr
 }
 
-
 console.log(bubbleSort([765, 34, 5, 65, 75, 89, 90, 100]))
+
+//*****  Selection Sort *****//
