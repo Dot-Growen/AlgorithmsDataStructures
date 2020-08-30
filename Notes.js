@@ -64,6 +64,72 @@ console.log(array3);
 
 ///////////////////////////////////////////////////////////////
 
+// toFixed() Method
+// The toFixed() method formats a number using fixed-point notation.
+
+console.log(financial(123.456));
+// expected output: "123.46"
+
+console.log(financial(0.004));
+// expected output: "0.00"
+
+console.log(financial('1.23e+5'));
+// expected output: "123000.00"
+
+///////////////////////////////////////////////////////////////
+
+// repeat() Method
+// The repeat() method constructs and returns a new string which contains the specified number of copies of the string on which it was called, concatenated together.
+
+const chorus = 'Because I\'m happy. ';
+
+console.log(`Chorus lyrics for "Happy": ${chorus.repeat(27)}`);
+
+// expected output: "Chorus lyrics for "Happy": Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. Because I'm happy. "
+
+///////////////////////////////////////////////////////////////
+
+// sort()
+// The sort() method sorts the elements of an array in place and returns the sorted array. The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.
+
+var numbers = [4, 2, 5, 1, 3];
+numbers.sort(function (a, b) {
+    return a - b;
+});
+console.log(numbers);
+
+// [1, 2, 3, 4, 5]
+
+///////////////////////////////////////////////////////////////
+
+// (...)
+// Spread syntax (...) allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
+
+const parts = ['shoulders', 'knees']; 
+const lyrics = ['head', ...parts, 'and', 'toes']; 
+//  ["head", "shoulders", "knees", "and", "toes"]
+
+///////////////////////////////////////////////////////////////
+
+// Math.max()
+// The Math.max() function returns the largest of the zero or more numbers given as input parameters.
+
+console.log(Math.max(1, 3, 2));
+// expected output: 3
+
+console.log(Math.max(-1, -3, -2));
+// expected output: -1
+
+const array1 = [1, 3, 2];
+
+console.log(Math.max(...array1));
+// expected output: 3
+
+///////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////
+
 // OR operator "||"
 //x || y;
 // returns x when x is truthy

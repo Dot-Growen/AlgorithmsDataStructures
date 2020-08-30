@@ -576,6 +576,45 @@ class BinarySearchTree {
         return (left + right) + 1
     }
 
+    min(node = this.root){
+        var current = node
+        while(current.left){
+            current = current.left
+        }
+        return current
+    }
+
+      // if head is null return undefine
+    // loop through the tree for the given value
+    // if the node is present
+    // set a condition to check if its the head
+    // if so, set the minimum value on the right side to the head
+    // set a sondition to check if it has children
+    // if so set the minimum val of that side to its position
+    // if not set the the prev node right or left property to null
+
+    Remove(val, node = this.root) {
+        if (!this.root) {
+            return this.root;
+        }
+        console.log(node.val)
+        if (val < node.val) {
+            node.left = this.Remove(val, node.left)
+        } else if (val > node.val) {
+            node.right = this.Remove(val, node.right)
+        } else {
+            if (node.left == null){
+                return node.right
+            } else if (node.right == null) {
+                return node.left
+            }
+            var temp = this.min(node.right);
+            node.val = temp.val
+            node.right = this.Remove(val, node.right)
+        }
+        return node;
+    }
+
 }
 
 var tree = new BinarySearchTree()
