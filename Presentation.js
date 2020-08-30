@@ -1,18 +1,25 @@
-function diagonalDifference(input) {
-    var lines = input.split("\n");
-    var N = parseInt(lines[0]);
-    var t = 0;
-    for (i = 1; i <= N; i++) {
-        var line = lines[i].split(" ");
-        t += parseInt(line[i - 1]) - parseInt(line[N - i]);
+// Start looping with varible i through the array until the end, incrementing by 1
+// save i to a variable named lowest
+// start looping with variable j at i + 1 until the end of the array
+// if the value of lowest is greater than the value of j then make lowest(index) equal j
+// if lowest does not equal i swap the values of i with lowest
+// return the array
+
+function selectionSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let lowest = i
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[lowest]) {
+                lowest = j
+            }
+        }
+        if (lowest !== i) {
+            let temp = arr[i]
+            arr[i] = arr[lowest]
+            arr[lowest] = temp
+        }
     }
-    console.log(Math.abs(t));
+    return arr
 }
 
-
-
-console.log(diagonalDifference(
-    [
-        [1, 2, 3],
-        [4, 5, 6],
-        [9, 8, 9]]))
+console.log(selectionSort([3, 2, 4, 1]))
