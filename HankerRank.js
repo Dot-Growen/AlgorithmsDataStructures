@@ -127,3 +127,110 @@ function birthdayCakeCandles(arr) {
 }
 
 birthdayCakeCandles([3, 2, 1, 3])
+
+// 8 - 30 - 2020 
+// 6. Given an array, , of  integers, print each element in reverse order as a single line of space-separated integers
+
+function reverseArray(a) {
+    var x = 1
+    for (var i = 0; i < a.length / 2; i++) {
+        var temp = a[i]
+        a[i] = a[a.length - x]
+        a[a.length - x] = temp
+        x++
+    }
+
+    return a
+}
+reverseArray([1, 2, 3, 4, 5])
+
+// 7. Calculate the hourglass sum for every hourglass in arr, then print the maximum hourglass sum. (Level 2)
+// create a max variable and set it to 0
+// start looping the variable i through the arr
+// start a looping variable j through the arr
+// if i or j is not 0 or 5
+// calculate the sum of the hourglass and save it to glassVal variable
+// if glassVal is greater then max set max = glassVal
+// return max
+
+
+function hourglassSum(arr) {
+    var max = 0
+    for( var i = 0; i < arr.length; i++){
+        for( var j = 0; j < arr.length; j++){
+            if((i !== 0) && (j !== 0) && (j !== 5) && (i !== 5)) {
+                var glassVal = (arr[i][j] + arr[i-1][j-1] + arr[i-1][j] + arr[i-1][j+1] + arr[i+1][j-1] + arr[i+1][j] + arr[i+1][j+1])
+                if(glassVal > max){
+                    max = glassVal
+                }
+            }
+        }
+    }
+    return max
+}
+hourglassSum([[-9, -9, -9, 1, 1, 1],
+              [0, -9, 0, 4, 3, 2],
+              [-9, -9, -9, 1, 2, 3],
+              [0, 0, 8, 6, 6, 0],
+              [0, 0, 0, -2, 0, 0],
+              [0, 0, 1, 2, 4, 0]])
+
+// 8. Starting with a 1-indexed array of zeros and a list of operations, for each operation add a value to each of the array element between two given indices, inclusive. Once all operations have been performed, return the maximum value in your array. (NOT DONE)
+
+// create a array the n zeros
+
+
+
+function arrayManipulation(n, queries) {
+    var zeros = []
+    for (var i = 0; i < n; i++) {
+        zeros.push(0)
+    }
+    var w = 2
+    var x = 0
+    var y = 0
+    var z = 1
+    function row(s) {
+        if (s === 0) {
+            return Math.max(...zeros)
+        } else {
+            for (var j = queries[x][y]; j <= queries[x][z]; j++) {
+                zeros[j - 1] += queries[x][w]
+            }
+            x++
+            return row(s - 1)
+        }
+    }
+    row(queries.length)
+    return Math.max(...zeros)
+}
+
+console.log(arrayManipulation(5, [[1, 2, 100],
+[2, 5, 100],
+[3, 4, 100]
+])
+)
+
+        // queries[0][0]
+        // queries[1][0]
+        // queries[2][0]
+
+                    // queries[0][1]
+                    // queries[1][1]
+                    // queries[2][1]
+
+                                // queries[0][2]
+                                // queries[1][2]
+                                // queries[2][2]
+
+    // Quadratic time complexity
+
+    // for (var i = 0; i < queries.length; i++) {
+    //     for (var j = queries[x][y]; j <= queries[x][z]; j++) {
+    //         console.log(x, y)
+    //         zeros[j - 1] += queries[x][w]
+    //     }
+
+    //     x++
+    // }
+    // return Math.max(...zeros)
