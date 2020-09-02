@@ -105,8 +105,8 @@ console.log(numbers);
 // (...)
 // Spread syntax (...) allows an iterable such as an array expression or string to be expanded in places where zero or more arguments (for function calls) or elements (for array literals) are expected, or an object expression to be expanded in places where zero or more key-value pairs (for object literals) are expected.
 
-const parts = ['shoulders', 'knees']; 
-const lyrics = ['head', ...parts, 'and', 'toes']; 
+const parts = ['shoulders', 'knees'];
+const lyrics = ['head', ...parts, 'and', 'toes'];
 //  ["head", "shoulders", "knees", "and", "toes"]
 
 ///////////////////////////////////////////////////////////////
@@ -127,38 +127,54 @@ console.log(Math.max(...array1));
 
 ///////////////////////////////////////////////////////////////
 
+// setTimeout()
+// The setTimeout() method of the WindowOrWorkerGlobalScope mixin (and successor to Window.setTimeout()) sets a timer which executes a function or specified piece of code once the timer expires.
 
-///////////////////////////////////////////////////////////////
+var timeoutID;
 
-// OR operator "||"
-//x || y;
-// returns x when x is truthy
-// returns y when x is not truthy
-
-///////////////////////////////////////////////////////////////
-
-// For/Of Loop
-// for/of lets you loop over data structures that are iterable such as Arrays, Strings, Maps, NodeLists, and more.
-for (variable of iterable) {
-    // code block to be executed
-}
-//Array
-var cars = ['BMW', 'Volvo', 'Mini'];
-for (let x of cars) {
-    document.write(x + "<br >");
-}
-//String
-var txt = 'JavaScript';
-for (let x of txt) {
-    document.write(x + "<br >");
+function delayedAlert() {
+    timeoutID = window.setTimeout(window.alert, 2 * 1000, 'That was really slow!');
 }
 
-
-// For/In Loop
-// The JavaScript for/in statement loops through the properties of an object:
-var person = { fname: "John", lname: "Doe", age: 25 };
-
-var text = "";
-for (let x in person) {
-    text += person[x];
+// Cancel alert before it happens
+function clearAlert() {
+    window.clearTimeout(timeoutID);
 }
+    ///////////////////////////////////////////////////////////////
+
+
+
+    ///////////////////////////////////////////////////////////////
+
+    // OR operator "||"
+    //x || y;
+    // returns x when x is truthy
+    // returns y when x is not truthy
+
+    ///////////////////////////////////////////////////////////////
+
+    // For/Of Loop
+    // for/of lets you loop over data structures that are iterable such as Arrays, Strings, Maps, NodeLists, and more.
+    for (variable of iterable) {
+        // code block to be executed
+    }
+    //Array
+    var cars = ['BMW', 'Volvo', 'Mini'];
+    for (let x of cars) {
+        document.write(x + "<br >");
+    }
+    //String
+    var txt = 'JavaScript';
+    for (let x of txt) {
+        document.write(x + "<br >");
+    }
+
+
+    // For/In Loop
+    // The JavaScript for/in statement loops through the properties of an object:
+    var person = { fname: "John", lname: "Doe", age: 25 };
+
+    var text = "";
+    for (let x in person) {
+        text += person[x];
+    }

@@ -47,7 +47,10 @@ const swap2 = (arr, idx1, idx2) => {
 // set a condition if noswap is true the break the parent loop 
 
 // Big O(n) => nearly sorted data
-// Add noSwaps for optimization 
+// Add noSwaps for optimization & Linear Time
+
+// Space complexitiy
+// Big O(1)
 
 function bubbleSort(arr) {
     var noSwaps;
@@ -71,7 +74,12 @@ bubbleSort([765, 34, 5, 65, 75, 89, 90, 100])
 
 //*****  Selection Sort *****//
 
+// Time complexity
 // Big O(n^2) => nested loop
+
+// Space complexitiy
+// Big O(1)
+
 // Start looping with varible i through the array until the end, incrementing by 1
 // save i to a variable named lowest
 // start looping with variable j at i + 1 until the end of the array
@@ -100,8 +108,12 @@ selectSort([1, 2, 1, 4])
 
 //*****  Insertion Sort *****//
 
+// Time complexities 
 // Big O(n^2) => nested loop
 // Big O(n) => nearly sorted data
+
+// Space complexitiy
+// Big O(1)
 
 // Works well when you have data coming in
 
@@ -110,15 +122,43 @@ selectSort([1, 2, 1, 4])
 // Continue to the next element and if it is in the incorrect order, iterate through the sorted portion(i.e. the left side) to place the element in the correct place.
 // repeat until the array is sorted.
 
+// Start looping at index 1 with i until the end of the array
+// Set a variable current to the value of i
+// Start looping backward at i - 1 until the beginning of the array and while current is less than the value of j
+//*** assign the value of j to j + 1 
+// assign current to j + 1 
+
+
 function insertionSort(arr) {
     for (var i = 1; i < arr.length; i++) {
         var current = arr[i]
         for (var j = i - 1; j >= 0 && current < arr[j]; j--) {
+            console.log(arr)
             arr[j + 1] = arr[j]
         }
         arr[j + 1] = current
     }
     return arr
 }
+console.log(insertionSort([3, 5, 6, 8, 7, 4]))
 
-console.log(insertionSort([2, 3, 1, 4]))
+function insertionSort(arr){
+    var min = arr[0];
+    for (var i = 0; i < arr.length; i++){
+        if (arr[i] < arr[i - 1]){
+            min = arr[i];
+            for (var j = i; j >= 0; j--){
+                if (min < arr[j]){
+                    var temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+    return arr;
+}
+let new_arr = [5,3,4,2,1];
+console.log(insertionSort(new_arr));
+
+//*****  Insertion Sort *****//
