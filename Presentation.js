@@ -1,18 +1,34 @@
-function insertionSort(arr){
-    var min = arr[0];
-    for (var i = 0; i < arr.length; i++){
-        if (arr[i] < arr[i - 1]){
-            min = arr[i];
-            for (var j = i; j >= 0; j--){
-                if (min < arr[j]){
-                    var temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
-                }
-            }
+function merge(arr1, arr2) {
+    let result = []
+    let i = 0
+    let j = 0
+    while (i < arr1.length && j < arr2.length) {
+        if (arr2[j] > arr1[i]) {
+            result.push(arr1[i])
+            i++
+        } else {
+            result.push(arr2[j])
+            j++
         }
     }
-    return arr;
+    while(i < arr1.length){
+        result.push(arr1[i])
+        i++
+    }
+    while(j < arr2.length){
+        result.push(arr2[j])
+        j++
+    }
+
+    return result
 }
-let new_arr = [5,3,4,2,1];
-console.log(insertionSort(new_arr));
+
+function mergeSort(arr){
+    if(arr.length <= 1) return arr;
+    var mid = Math.floor(arr.length/2)
+    let left = mergeSort(arr.slice(0, mid))
+    let right = mergeSort(arr.slice(mid))
+    return merge(left, right)
+}
+
+console.log(mergeSort([14, 12, 8, 3, 2, 11, 5, 6]))
