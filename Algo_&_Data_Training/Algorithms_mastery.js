@@ -162,6 +162,14 @@ let new_arr = [5,3,4,2,1];
 console.log(insertionSort(new_arr));
 
 //*****  Merge Sort *****//
+// Big O  => O(n*Log n)
+// Set result varible for the combined array
+// set to iterator starting at 0
+// start looping until the length of both iterators
+    // Set a condition if one is less than the other push it into results
+    // else push the other
+// start looping both iterator to add the remaining values
+//return result arr
 
 function merge(arr1, arr2) {
     let result = []
@@ -187,6 +195,11 @@ function merge(arr1, arr2) {
     return result
 }
 
+// set base case
+// set a variable to the midpoint
+// set a left variable to recursively split the array for the left side
+// do the same for the right side
+// return a call of the merge to combine left and right after reaching base case 
 function mergeSort(arr){
     if(arr.length <= 1) return arr;
     let mid = Math.floor(arr.length/2)

@@ -269,5 +269,42 @@ function deleteNode(head, position) {
             runner.next = runner.next.next;
         return head
     }
+}
 
+// 9 - 2 - 2020 
+
+// 11. Given the initial value of  for each of Sam's  students, write code to automate the rounding process.
+function gradingStudents(grades) {
+    for (var i = 0; i < grades.length; i++) {
+        var remainder = grades[i] % 5
+        if (remainder >= 3 && grades[i] > 37) {
+            grades[i] += (5 - remainder)
+        }
+    }
+    return grades
+}
+
+
+// 12. Complete the countApplesAndOranges function in the editor below. It should print the number of apples and oranges that land on Sam's house, each on a separate line.
+// set two counters for apples(app) and organges(org)
+// start looping apples
+//** */ if a plus apples[i] is greater than or equal to s and less than or equal to t then app++ 
+// start looping oranges 
+//** */ if b plus oranges[i] is less than or equal to t and greater than or equal to s then org++ 
+// Return app & org
+
+function countApplesAndOranges(s, t, a, b, apples, oranges) {
+    let app = 0
+    let org = 0
+    for (var i = 0; i < apples.length; i++) {
+        if ((a + apples[i]) >= s && t >= (a + apples[i]))  {
+            app++
+        }
+    }
+    for (var j = 0; j < oranges.length; j++) {
+        if((b + oranges[j]) <= t && s <= (b + oranges[j])) {
+            org++
+        }
+    }
+    console.log(app + "\n" + org)
 }
