@@ -162,7 +162,9 @@ let new_arr = [5,3,4,2,1];
 console.log(insertionSort(new_arr));
 
 //*****  Merge Sort *****//
-// Big O  => O(n*Log n)
+// Big O  => O(n Log n)
+// Log base 2 of n splits and n comparisons 
+
 // Set result varible for the combined array
 // set to iterator starting at 0
 // start looping until the length of both iterators
@@ -209,3 +211,37 @@ function mergeSort(arr){
 }
 
 console.log(mergeSort([14, 12, 8, 3, 2, 11, 5, 6]))
+
+//*****  Quick Sort *****//
+// Best Case => O(n Log n) 
+// O(Log n)-Log base 2 of n decomposition. O(n)-n comparison per decomposition
+
+// Worst Case => O(n^2) Quadratic time
+// When the pivot is the minimum or maximum element every single time
+
+function arrayParition(arr, start = 0, end = arr.length) {
+    const swap = (arr, idx1, idx2) => {
+        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]
+    }
+    let pivot = arr[start]
+    let swapIdx = start
+    for (var i = start + 1; i <= end; i++) {
+        if (arr[i] <= pivot) {
+            swapIdx++
+            swap(arr, swapIdx, i)
+        }
+    }
+    swap(arr, start, swapIdx)
+    console.log(arr)
+    return arr.indexOf(pivot)
+}
+
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left < right) {
+        let pivotIndex = arrayParition(arr, left, right)
+        quickSort(arr, left, right = pivotIndex - 1)
+        quickSort(arr, left = pivotIndex + 1, right)
+    }
+    return arr
+}
+console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3]))

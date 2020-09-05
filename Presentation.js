@@ -1,34 +1,26 @@
-function merge(arr1, arr2) {
-    let result = []
-    let i = 0
-    let j = 0
-    while (i < arr1.length && j < arr2.length) {
-        if (arr2[j] > arr1[i]) {
-            result.push(arr1[i])
-            i++
-        } else {
-            result.push(arr2[j])
-            j++
+function arrayParition(arr, start = 0, end = arr.length) {
+    const swap = (arr, idx1, idx2) => {
+        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]
+    }
+    let pivot = arr[start]
+    let swapIdx = start
+    for (var i = start + 1; i <= end; i++) {
+        if (arr[i] <= pivot) {
+            swapIdx++
+            swap(arr, swapIdx, i)
         }
     }
-    while(i < arr1.length){
-        result.push(arr1[i])
-        i++
-    }
-    while(j < arr2.length){
-        result.push(arr2[j])
-        j++
-    }
-
-    return result
+    swap(arr, start, swapIdx)
+    console.log(arr)
+    return arr.indexOf(pivot)
 }
 
-function mergeSort(arr){
-    if(arr.length <= 1) return arr;
-    var mid = Math.floor(arr.length/2)
-    let left = mergeSort(arr.slice(0, mid))
-    let right = mergeSort(arr.slice(mid))
-    return merge(left, right)
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left < right) {
+        let pivotIndex = arrayParition(arr, left, right)
+        quickSort(arr, left, right = pivotIndex - 1)
+        quickSort(arr, left = pivotIndex + 1, right)
+    }
+    return arr
 }
-
-console.log(mergeSort([14, 12, 8, 3, 2, 11, 5, 6]))
+console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3]))

@@ -273,7 +273,7 @@ function deleteNode(head, position) {
 
 // 9 - 2 - 2020 
 
-// 11. Given the initial value of  for each of Sam's  students, write code to automate the rounding process.
+// 11. Given the initial value of  for each of Sam's  students, write code to automate the rounding process. 
 function gradingStudents(grades) {
     for (var i = 0; i < grades.length; i++) {
         var remainder = grades[i] % 5
