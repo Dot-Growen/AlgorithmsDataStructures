@@ -238,7 +238,7 @@ class DLL {
             }
             runner = runner.next;
         }
-        console.log("List does not contain => " +val)
+        console.log("List does not contain => " + val)
         return false;
     }
 
@@ -346,22 +346,22 @@ stack.print()
 //********** Queues **********//
 
 class Node {
-    constructor(val){
+    constructor(val) {
         this.val = val;
         this.next = null;
     }
 }
 
 class Queue {
-    constructor(){
+    constructor() {
         this.first = null;
         this.last = null;
         this.length = 0;
     }
 
-    enqueue(val){
+    enqueue(val) {
         var newNode = new Node(val);
-        if(!this.first){
+        if (!this.first) {
             this.first = newNode;
             this.last = newNode;
         } else {
@@ -371,10 +371,10 @@ class Queue {
         return ++this.length
     }
 
-    dequeue(){
-        if(!this.first) return null;
+    dequeue() {
+        if (!this.first) return null;
         var temp = this.first;
-        if(this.first == this.last){
+        if (this.first == this.last) {
             this.last = null
         }
         this.first = this.first.next;
@@ -547,14 +547,14 @@ class BinarySearchTree {
     // set a left and right variable the recurively checks for each node in the tree
     // check for max between the left and the right then return the greater
 
-    height(node = this.root){
-        if(!node){
+    height(node = this.root) {
+        if (!node) {
             return 0;
         }
-    
+
         const left = this.height(node.left);
         const right = this.height(node.right);
-        if(left > right) {
+        if (left > right) {
             return left + 1
         } else {
             return right + 1
@@ -567,8 +567,8 @@ class BinarySearchTree {
     // if not null have the "checker node" move to the left in the recursive function
     // when null return the sum of the left and right additions plus 1
 
-    size(node = this.root){
-        if(node === null){
+    size(node = this.root) {
+        if (node === null) {
             return 0;
         }
         let left = this.size(node.left)
@@ -576,15 +576,15 @@ class BinarySearchTree {
         return (left + right) + 1
     }
 
-    min(node = this.root){
+    min(node = this.root) {
         var current = node
-        while(current.left){
+        while (current.left) {
             current = current.left
         }
         return current
     }
 
-      // if head is null return undefine
+    // if head is null return undefine
     // loop through the tree for the given value
     // if the node is present
     // set a condition to check if its the head
@@ -603,7 +603,7 @@ class BinarySearchTree {
         } else if (val > node.val) {
             node.right = this.Remove(val, node.right)
         } else {
-            if (node.left == null){
+            if (node.left == null) {
                 return node.right
             } else if (node.right == null) {
                 return node.left
@@ -628,4 +628,177 @@ console.log(tree.contains_recurise(2, runner = this.root))
 
 //******** Tree Traversal *********//
 
+// Trees are non linear data structures that contain a root and child nodes
+// Binary Trees can have value of any type, but at most two children for each parent
+// Binary Search Trees are a more specific version of binary trees where every node to the left of a parent is less than it's value and every node to the right is greater
+// We can search through Trees using BFS and DFS
 
+// visit the node
+// explore the entre left side 
+// explore the entre right side
+
+
+// Time complexity = the same
+// Breadth First 
+// Depth First
+
+// Space complexity 
+// Breadth First => takes up more space as the tree widens
+// Depth First => takes up more is the tree is linear
+
+// Depth First 
+// Post Order => Can be used to "export" a tree structure so that it is easily reconstructed or copied.
+// Pre Order 
+// In Order => use commonly with BST. receive nodes in the tree in their underlying order
+
+
+class Node {
+    constructor(val) {
+        this.val = val
+        this.left = null
+        this.right = null
+    }
+}
+
+class Tree {
+    constructor() {
+        this.root = null
+    }
+
+    transverse() {
+        let queue = []
+        let visited = []
+        let runner = this.root
+        queue.push(runner.val)
+        for (var i = 0; i < queue.length; i++) {
+            visited.push(queue.shift())
+            if (runner.left) {
+                queue.push(runner.left.val)
+            }
+            if (runner.right) {
+                queue.push(runner.right.val)
+            }
+        }
+        return visited
+    }
+
+    insert(val) {
+        var newNode = new Node(val);
+        if (!this.root) {
+            this.root = newNode;
+            return this
+        } else {
+            var runner = this.root;
+            while (true) {
+                if (val === runner.val) return undefined;
+                if (val > runner.val) {
+                    if (!runner.right) {
+                        runner.right = newNode;
+                        return this;
+                    } else {
+                        runner = runner.right;
+                    }
+                } else if (val < runner.val) {
+                    if (!runner.left) {
+                        runner.left = newNode;
+                        return this;
+                    } else {
+                        runner = runner.left;
+                    }
+                }
+            }
+        }
+    }
+
+    // Breadth first Search
+    // we want to visit every node on the same level; every sibling node before we head to a child
+
+    // Create a queue(this can be an array) and a variable to store the values of nodes visted
+    // place the root node in the queue.
+    // Loop as long as there is anything in the queue.
+    //** */ Dequeue a node from the queue and push the value of the node into the variable that stores the nodes 
+    //** */ if there is a left property on the node dequeued - add it to the queue
+    //** */ if there is a right property on the node dequeued - add it to the queue
+    // Return the variable that stores the values
+
+    breadthFirstSearch() {
+        var queue = []
+        var visited = []
+        var runner = this.root
+        queue.push(runner)
+        while (queue.length) {
+            runner = queue.shift()
+            visited.push(runner.val)
+            if (runner.left) queue.push(runner.left)
+            if (runner.right) queue.push(runner.right)
+        }
+        return visited
+    }
+
+    // create a variable to store the values of nodes visited
+    // Store the root of the BST in a variable called current
+    // Write a helper function which accepts a node
+    //** */ Push the value of the node to the variable that stores the values.
+    //** */ If the node has a left property, call the helper function with the left property on the node
+    //** */ if the node has a right property, call the helper function with the right property on the node
+    // invoke the helper function with the current variable 
+    // Return the array of values
+
+    depthFirstPreOrder() {
+        var visited = []
+        var current = this.root
+        function traverse(node) {
+            visited.push(node.val)
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+        }
+        traverse(current)
+        return visited
+    }
+
+    // Create a variable to store the values of nodes visited
+    // Store the root of the BST in a variable called current 
+    // Write a helper function which accepts a node
+    //** */ If the node has a left property, call the helper function within the left property on the node
+    //** */ If the node has a right property, call the helper function within the right property on the node
+    //** */ Push the value of the node to the variable that stores the values
+    // Invoke the helper function with the current variable
+    // Return the array of values
+
+    depthFirstPostOrder() {
+        var visited = []
+        var current = this.root
+        function traverse(node) {
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+            visited.push(node.val)
+        }
+        traverse(current)
+        return visited
+
+    }
+
+
+    // Create a variable to store the values of nodes visited
+    // Store the root of the BST in a variable called current 
+    // Write a helper function which accepts a node
+    //** */ If the node has a left property, call the helper function within the left property on the node
+    //** */ Push the value of the node to the variable that stores the values
+    //** */ If the node has a right property, call the helper function within the right property on the node
+    // Invoke the helper function with the current variable
+    // Return the array of values
+
+    depthFirstInOrder() {
+        var visited = []
+        var current = this.root
+        function traverse(node) {
+            if (node.left) traverse(node.left)
+            visited.push(node.val)
+            if (node.right) traverse(node.right)
+        }
+        traverse(current)
+        return visited
+
+    }
+
+}

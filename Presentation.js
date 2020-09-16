@@ -1,26 +1,132 @@
-function arrayParition(arr, start = 0, end = arr.length) {
-    const swap = (arr, idx1, idx2) => {
-        [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]
+class Node {
+    constructor(val) {
+        this.val = val
+        this.left = null
+        this.right = null
     }
-    let pivot = arr[start]
-    let swapIdx = start
-    for (var i = start + 1; i <= end; i++) {
-        if (arr[i] <= pivot) {
-            swapIdx++
-            swap(arr, swapIdx, i)
-        }
-    }
-    swap(arr, start, swapIdx)
-    console.log(arr)
-    return arr.indexOf(pivot)
 }
 
-function quickSort(arr, left = 0, right = arr.length - 1) {
-    if (left < right) {
-        let pivotIndex = arrayParition(arr, left, right)
-        quickSort(arr, left, right = pivotIndex - 1)
-        quickSort(arr, left = pivotIndex + 1, right)
+class Tree {
+    constructor() {
+        this.root = null
     }
-    return arr
+
+    insert(val) {
+        var newNode = new Node(val);
+        if (!this.root) {
+            this.root = newNode;
+            return this
+        } else {
+            var runner = this.root;
+            while (true) {
+                if (val === runner.val) return undefined;
+                if (val > runner.val) {
+                    if (!runner.right) {
+                        runner.right = newNode;
+                        return this;
+                    } else {
+                        runner = runner.right;
+                    }
+                } else if (val < runner.val) {
+                    if (!runner.left) {
+                        runner.left = newNode;
+                        return this;
+                    } else {
+                        runner = runner.left;
+                    }
+                }
+            }
+        }
+    }
+
+    breadthFirstSearch() {
+        var queue = []
+        var visited = []
+        var runner = this.root
+        queue.push(runner)
+        while (queue.length) {
+            runner = queue.shift()
+            visited.push(runner.val)
+            if (runner.left) queue.push(runner.left)
+            if (runner.right) queue.push(runner.right)
+        }
+        return visited
+    }
+
+    // create a variable to store the values of nodes visited
+    // Store the root of the BST in a variable called current
+    // Write a helper function which accepts a node
+    // Push the value of the node to the variable that stores the values.
+    // If the node has a left property, call the helper function with the left property on the node
+    // if the node has a right property, call the helper function with the right property on the node
+    // invoke the helper function with the current variable 
+    // Return the array of values
+    depthFirstPreOrder() {
+        var visited = []
+        var current = this.root
+        function traverse(node) {
+            visited.push(node.val)
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+        }
+        traverse(current)
+        return visited
+    }
+
+
+    // Create a variable to store the values of nodes visited
+    // Store the root of the BST in a variable called current 
+    // Write a helper function which accepts a node
+    //** */ If the node has a left property, call the helper function within the left property on the node
+    //** */ If the node has a right property, call the helper function within the right property on the node
+    //** */ Push the value of the node to the variable that stores the values
+    // Invoke the helper function with the current variable
+    // Return the array of values
+
+    depthFirstPostOrder() {
+        var visited = []
+        var current = this.root
+        function traverse(node) {
+            if (node.left) traverse(node.left)
+            if (node.right) traverse(node.right)
+            visited.push(node.val)
+        }
+        traverse(current)
+        return visited
+
+    }
+
+
+    // Create a variable to store the values of nodes visited
+    // Store the root of the BST in a variable called current 
+    // Write a helper function which accepts a node
+    //** */ If the node has a left property, call the helper function within the left property on the node
+    //** */ Push the value of the node to the variable that stores the values
+    //** */ If the node has a right property, call the helper function within the right property on the node
+    // Invoke the helper function with the current variable
+    // Return the array of values
+
+    depthFirstInOrder() {
+        var visited = []
+        var current = this.root
+        function traverse(node) {
+            if (node.left) traverse(node.left)
+            visited.push(node.val)
+            if (node.right) traverse(node.right)
+        }
+        traverse(current)
+        return visited
+
+    }
+
 }
-console.log(quickSort([4, 8, 2, 1, 5, 7, 6, 3]))
+
+var tree = new Tree()
+tree.insert(10)
+tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)
+
+console.log(tree.depthFirstInOrder())
